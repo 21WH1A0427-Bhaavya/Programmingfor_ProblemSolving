@@ -135,6 +135,7 @@ class Piece(object):
         self.color = shape_colors[shapes.index(shape)]
         self.rotation = 0 # number from 0-possible rotations
 
+back_img = pygame.image.load('back.png')
 keys_img = pygame.image.load('keys.png')
 score_img = pygame.image.load('ten-points1.png')
 rules_img = pygame.image.load('rules-true.png')
@@ -173,9 +174,10 @@ class Button():
         return action
 
 #logo_button = Button(40, 50, logo_img, 0.5)
+back_Button = Button(30, 625, back_img, 0.05)
 keys_button = Button(620, 280, keys_img, 0.27)
 score_button = Button(630, 390, score_img, 0.2)
-score_win_button = Button(620, 540, score_img, 0.5)
+score_win_button = Button(620, 540, score_img, 0.3)
 rules_button = Button(20, 90, rules_img, 1.0)
 star_button = Button(50, 150, star_img, 1.0)
 logo_button = Button(110, 90, logo_img, 1.5)
@@ -365,7 +367,7 @@ def help(win):
         win.blit(inst2, (top_left_x - 80, 115))
         inst2 = font.render('''creating lines that fill the box horizontally without empty''', 1, (0,0,100))
         win.blit(inst2, (top_left_x - 80, 140))
-        inst2 = font.render(''' spaces before it reaches the top. The player loses when the''', 1, (0,0,100))
+        inst2 = font.render('''spaces before it reaches the top. The player loses when the''', 1, (0,0,100))
         win.blit(inst2, (top_left_x - 80, 165))
         inst2 = font.render('''tetrominoes make it to top of the playing field.''', 1, (0,0,100))
         win.blit(inst2, (top_left_x - 80, 190))
@@ -378,20 +380,22 @@ def help(win):
         inst2 = font.render('''-> Down Button Key for Soft Drop.''', 1, (0,0,255))
         win.blit(inst2, (top_left_x - 220, 355))
         keys_button.draw(win)
-        inst2 = font.render('''2. When a line of blocks is created, the entire line''', 1, (255, 0, 230))
+        inst2 = font.render('''2. When a line of blocks is created, the entire line''', 1, (139,10,80))
         win.blit(inst2, (top_left_x - 220, 420))
-        inst2 = font.render('''disappears and +10 points are rewarded.''', 1, (255, 0, 230))
+        inst2 = font.render('''disappears and +10 points are rewarded.''', 1, (139,10,80))
         win.blit(inst2, (top_left_x - 220, 445))
         score_button.draw(win)
-        inst2 = font.render('''3. The upcoming pieces will be shown in the Next Shape section.''', 1, (255, 100, 10))
+        inst2 = font.render('''3. The upcoming pieces will be shown in the Next Shape section.''', 1, (155,0,240))
         win.blit(inst2, (top_left_x - 220, 510))
         
         if start_button.draw(win):
             main(win)
+        if back_Button.draw(win):
+            main_menu(win)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
+                main_menu(win)
 
 def main(win): 
     #last_score = max_score()
@@ -428,11 +432,8 @@ def main(win):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
-                pygame.display.quit()
-            
-            if help_button.draw(win):
-                help()
+                main_menu(win)
+                
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -488,9 +489,9 @@ def main(win):
         draw_next_shape(next_piece, win)
         
         if restart_button.draw(win):
-            run = False
+            main(win)
         if exit_button.draw(win):
-            pygame.display.quit()
+            main_menu(win)
         pygame.display.update()
 
         #Checks if user lost
