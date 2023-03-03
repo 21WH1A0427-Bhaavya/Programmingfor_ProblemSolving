@@ -135,6 +135,7 @@ class Piece(object):
         self.color = shape_colors[shapes.index(shape)]
         self.rotation = 0 # number from 0-possible rotations
 
+play_again_img = pygame.image.load('4972899ccd327d1.png')
 back_img = pygame.image.load('back.png')
 keys_img = pygame.image.load('keys.png')
 score_img = pygame.image.load('ten-points1.png')
@@ -174,6 +175,7 @@ class Button():
         return action
 
 #logo_button = Button(40, 50, logo_img, 0.5)
+play_again_button = Button(50, 200, play_again_img, 0.5)
 back_Button = Button(30, 625, back_img, 0.05)
 keys_button = Button(620, 280, keys_img, 0.27)
 score_button = Button(630, 390, score_img, 0.2)
@@ -185,9 +187,9 @@ win_bg_button = Button(285, 5, win_bg_img, 0.35)
 #tetris_bg = Button(-10, 0, tetris_bg_img, 1.15)
 game_over_button = Button(220, 350, game_over_img, 0.6)
 help_button = Button(720, 20, help_img, 0.1)
-restart_button = Button(50, 300, restart_img, 0.5)
+restart_button = Button(50, 250, restart_img, 0.5)
 start_button = Button(290, 600, start_img, 0.5)
-exit_button = Button(50, 450, exit_img, 0.5)
+exit_button = Button(50, 400, exit_img, 0.5)
 
 def create_grid(locked_pos={}):  
     #we basically represent the grid as a list full of colors
@@ -272,6 +274,7 @@ def clear_rows(grid, locked):
         #if there is no black space i.e its is completely filled with objects then clear the row 
             inc += 1 #whenver we delete a row we add one to the increment
             ind = i #indicates how many row the previous line has to move down
+            
             for j in range(len(row)):
             #get every position in the row, i is gonna stay static since we are already in the curent row
                 try:
@@ -284,6 +287,7 @@ def clear_rows(grid, locked):
             if y < ind:
                 newKey = (x, y + inc) #add y value to shift it down
                 locked[newKey] = locked.pop(key) #the last color value will be equal to the new position
+    
     row_no = inc
     #pygame.mixer.Sound('mixkit-casino-bling-achievement-2067.wav')
     #pygame.mixer.music.play(loops=0)
@@ -293,18 +297,20 @@ def clear_rows(grid, locked):
         draw_text_middle(win, 'DOUBLE!', 80, (255,255,100))
         score_win_button.draw(win)
         pygame.display.update()
-        pygame.time.delay(1500)
+        pygame.time.delay(1000)
     elif row_no == 3:
         draw_text_middle(win,'TRIPLE!', 80, (255,255,100))
         score_win_button.draw(win)
         pygame.display.update()
-        pygame.time.delay(1500)
+        pygame.time.delay(1000)
     elif row_no == 4:
         draw_text_middle(win, 'TETRIS!', 80, (255,255,100))
         star_button.draw(win)
         pygame.display.update()
-        pygame.time.delay(1500)
+        pygame.time.delay(1000)
+
     return inc  #how many rows we ended up clearing
+
 
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont('couriernew', 30, bold = True)
@@ -380,13 +386,17 @@ def help(win):
         inst2 = font.render('''-> Down Button Key for Soft Drop.''', 1, (0,0,255))
         win.blit(inst2, (top_left_x - 220, 355))
         keys_button.draw(win)
-        inst2 = font.render('''2. When a line of blocks is created, the entire line''', 1, (139,10,80))
-        win.blit(inst2, (top_left_x - 220, 420))
-        inst2 = font.render('''disappears and +10 points are rewarded.''', 1, (139,10,80))
-        win.blit(inst2, (top_left_x - 220, 445))
-        score_button.draw(win)
+        inst2 = font.render('''2. When a line of blocks is created, the entire line disappears.''', 1, (139,10,80))
+        win.blit(inst2, (top_left_x - 220, 410))
+        inst2 = font.render('''For each line cleared, score is incremented by 2 points.''', 1, (139,10,80))
+        win.blit(inst2, (top_left_x - 220, 435))
+        inst2 = font.render('''Bonus points are rewarded for clearing multiple lines.''', 1, (139,10,80))
+        win.blit(inst2, (top_left_x - 220, 460))
+        inst2 = font.render('''+10 points for both Double and Triple and +40 points for Tetris.''', 1, (139,10,80))
+        win.blit(inst2, (top_left_x - 220, 485))
+        #score_button.draw(win)
         inst2 = font.render('''3. The upcoming pieces will be shown in the Next Shape section.''', 1, (155,0,240))
-        win.blit(inst2, (top_left_x - 220, 510))
+        win.blit(inst2, (top_left_x - 220, 535))
         
         if start_button.draw(win):
             main(win)
@@ -434,10 +444,9 @@ def main(win):
             if event.type == pygame.QUIT:
                 main_menu(win)
                 
-
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    run = False
+                    main(win)
 
                 if event.key == pygame.K_LEFT:
                     current_piece.x -= 1
@@ -477,7 +486,7 @@ def main(win):
             next_piece = get_shape()
             change_piece = False
             row = clear_rows(grid, locked_positions)
-            score += clear_rows(grid, locked_positions) * 2
+            score += row * 2
             if row == 2:
                 score += 10
             elif row == 3:
@@ -496,15 +505,15 @@ def main(win):
 
         #Checks if user lost
         if check_lost(locked_positions):
+            
             game_over_button.draw(win)
             pygame.display.update()
+            pygame.time.delay(1500)
             #mixer.music.load('game_over_sound.mp3')
             #mixer.music.play(loops = 0)
             #draw_text_middle(win, "G A M E  O V E R", 60, (255,255,100))
-            pygame.time.delay(1500)
-            #playsound('mixkit-casino-bling-achievement-2067.wav')
-            run = False
-    
+            #playsound('mixkit-casino-bling-achievement-2067.wave'
+            run = False 
 
 def main_menu(win):  
     run = True
