@@ -176,8 +176,8 @@ class Button():
 #logo_button = Button(40, 50, logo_img, 0.5)
 back_Button = Button(30, 625, back_img, 0.3)
 keys_button = Button(620, 280, keys_img, 0.27)
-score_button = Button(630, 390, score_img, 0.2)
-score_win_button = Button(620, 540, score_img, 0.5)
+score_button = Button(630, 380, score_img, 0.5)
+score_win_button = Button(620, 540, score_img, 0.3)
 rules_button = Button(20, 90, rules_img, 1.0)
 star_button = Button(50, 150, star_img, 1.0)
 logo_button = Button(110, 90, logo_img, 1.5)
@@ -288,7 +288,7 @@ def clear_rows(grid, locked):
     #pygame.mixer.Sound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
     #pygame.mixer.music.play(loops=1)
 
-    if row_no == 2:
+    if row_no == 1:
         draw_text_middle(win ,'DOUBLE!', 80, (255,255,100))
         score_win_button.draw(win)
         pygame.display.update()
