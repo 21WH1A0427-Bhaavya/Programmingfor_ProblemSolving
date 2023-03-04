@@ -10,7 +10,7 @@ pygame.font.init() #intializing the font
 
 # global variables
 s_width = 800
-s_height = 600
+s_height = 700
 play_width = 300  #300 // 10 = 30 width per block
 play_height = 600  #600 // 20 = 30 height per block
 block_size = 30
@@ -135,6 +135,7 @@ class Piece(object):
         self.color = shape_colors[shapes.index(shape)]
         self.rotation = 0 # number from 0-possible rotations
 
+back_img = pygame.image.load('C:/Users/vinny/Desktop/back_button.png')
 keys_img = pygame.image.load('C:/Users/Vinny/Downloads/Keys.png.jpeg')
 score_img = pygame.image.load('C:/Users/vinny/Pictures/Saved Pictures/ten-points.png')
 rules_img = pygame.image.load('C:/Users/Vinny/Downloads/Instructions.png.jpeg')
@@ -173,6 +174,7 @@ class Button():
         return action
 
 #logo_button = Button(40, 50, logo_img, 0.5)
+back_Button = Button(30, 625, back_img, 0.3)
 keys_button = Button(620, 280, keys_img, 0.27)
 score_button = Button(630, 390, score_img, 0.2)
 score_win_button = Button(620, 540, score_img, 0.5)
@@ -388,6 +390,8 @@ def help(win):
         
         if start_button.draw(win):
             main(win)
+        if back_Button.draw(win):
+            main_menu(win)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -488,7 +492,7 @@ def main(win):
         draw_next_shape(next_piece, win)
         
         if restart_button.draw(win):
-            run = False
+            main(win)
         if exit_button.draw(win):
             pygame.display.quit()
         pygame.display.update()
