@@ -505,7 +505,7 @@ def main(win):
         if restart_button.draw(win):
             main(win)
         if exit_button.draw(win):
-            pygame.display.quit()
+            main_menu(win)
         pygame.display.update()
 
         #Checks if user lost
