@@ -135,7 +135,7 @@ class Piece(object):
         self.color = shape_colors[shapes.index(shape)]
         self.rotation = 0 # number from 0-possible rotations
 
-back_img = pygame.image.load('C:/Users/vinny/Desktop/back_button.png')
+back_img = pygame.image.load('C:/Users/vinny/Desktop/Tetris/back_button.png')
 keys_img = pygame.image.load('C:/Users/Vinny/Downloads/Keys.png.jpeg')
 score_img = pygame.image.load('C:/Users/vinny/Pictures/Saved Pictures/ten-points.png')
 rules_img = pygame.image.load('C:/Users/Vinny/Downloads/Instructions.png.jpeg')
@@ -295,9 +295,8 @@ def clear_rows(grid, locked):
         pygame.display.update()
         mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
         mixer.music.play(loops = 1)
-        pygame.time.delay(500)
+        pygame.time.delay(1500)
         playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-        run = False
     elif row_no == 3:
         draw_text_middle(win,'TRIPLE!', 80, (255,255,100))
         score_win_button.draw(win)
@@ -306,7 +305,6 @@ def clear_rows(grid, locked):
         mixer.music.play(loops = 1)
         pygame.time.delay(500)
         playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-        run = False
     elif row_no == 4:
         draw_text_middle(win, 'TETRIS!', 80, (255,255,100))
         star_button.draw(win)
@@ -315,7 +313,6 @@ def clear_rows(grid, locked):
         mixer.music.play(loops = 1)
         pygame.time.delay(500)
         playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-        run = False
     return inc  #how many rows we ended up clearing
 
 def draw_next_shape(shape, surface):
@@ -445,8 +442,7 @@ def main(win):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
-                pygame.display.quit()
+                main_menu(win)
             
             if help_button.draw(win):
                 help()
@@ -493,7 +489,7 @@ def main(win):
             next_piece = get_shape()
             change_piece = False
             row = clear_rows(grid, locked_positions)
-            score += clear_rows(grid, locked_positions) * 2
+            score += row * 2
             if row == 2:
                 score += 10
             elif row == 3:
