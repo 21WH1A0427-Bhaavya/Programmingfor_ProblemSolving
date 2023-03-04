@@ -293,17 +293,29 @@ def clear_rows(grid, locked):
         draw_text_middle(win, 'DOUBLE!', 80, (255,255,100))
         score_win_button.draw(win)
         pygame.display.update()
+        mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        mixer.music.play(loops = 1)
         pygame.time.delay(500)
+        playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        run = False
     elif row_no == 3:
         draw_text_middle(win,'TRIPLE!', 80, (255,255,100))
         score_win_button.draw(win)
         pygame.display.update()
+        mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        mixer.music.play(loops = 1)
         pygame.time.delay(500)
+        playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        run = False
     elif row_no == 4:
         draw_text_middle(win, 'TETRIS!', 80, (255,255,100))
         star_button.draw(win)
         pygame.display.update()
+        mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        mixer.music.play(loops = 1)
         pygame.time.delay(500)
+        playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        run = False
     return inc  #how many rows we ended up clearing
 
 def draw_next_shape(shape, surface):
@@ -390,6 +402,7 @@ def help(win):
         
         if start_button.draw(win):
             main(win)
+        pygame.display.update()
         if back_Button.draw(win):
             main_menu(win)
         pygame.display.update()
