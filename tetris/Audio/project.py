@@ -289,31 +289,31 @@ def clear_rows(grid, locked):
     #pygame.mixer.music.play(loops=1)
 
     if row_no == 2:
+        draw_text_middle(win ,'DOUBLE!', 80, (255,255,100))
+        score_win_button.draw(win)
+        pygame.display.update()
         mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
         mixer.music.play(loops = 1)
         pygame.time.delay(1500)
         mixer.music.stop()
-        draw_text_middle(win ,'DOUBLE!', 80, (255,255,100))
-        score_win_button.draw(win)
-        pygame.display.update()
-
     elif row_no == 3:
-        mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-        mixer.music.play(loops = 1)
-        pygame.time.delay(500)
-        mixer.music.stop()
         draw_text_middle(win,'TRIPLE!', 80, (255,255,100))
         score_win_button.draw(win)
+        pygame.time.delay(1500)
         pygame.display.update()
-
-    elif row_no == 4:
         mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
         mixer.music.play(loops = 1)
-        pygame.time.delay(500)
+        pygame.time.delay(1500)
         mixer.music.stop()
+    elif row_no == 4:
         draw_text_middle(win, 'TETRIS!', 80, (255,255,100))
         star_button.draw(win)
+        pygame.time.delay(1500)
         pygame.display.update()
+        mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        mixer.music.play(loops = 1)
+        pygame.time.delay(1500)
+        mixer.music.stop()
     return inc
 
 
