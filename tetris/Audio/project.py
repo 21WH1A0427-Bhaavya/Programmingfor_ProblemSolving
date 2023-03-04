@@ -289,31 +289,33 @@ def clear_rows(grid, locked):
     #pygame.mixer.music.play(loops=1)
 
     if row_no == 2:
-        #playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-        draw_text_middle(win, 'DOUBLE!', 80, (255,255,100))
-        score_win_button.draw(win)
-        pygame.display.update()
         mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
         mixer.music.play(loops = 1)
         pygame.time.delay(1500)
-        playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        mixer.music.stop()
+        draw_text_middle(win ,'DOUBLE!', 80, (255,255,100))
+        score_win_button.draw(win)
+        pygame.display.update()
+
     elif row_no == 3:
+        mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        mixer.music.play(loops = 1)
+        pygame.time.delay(500)
+        mixer.music.stop()
         draw_text_middle(win,'TRIPLE!', 80, (255,255,100))
         score_win_button.draw(win)
         pygame.display.update()
+
+    elif row_no == 4:
         mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
         mixer.music.play(loops = 1)
         pygame.time.delay(500)
-        playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-    elif row_no == 4:
+        mixer.music.stop()
         draw_text_middle(win, 'TETRIS!', 80, (255,255,100))
         star_button.draw(win)
         pygame.display.update()
-        mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-        mixer.music.play(loops = 1)
-        pygame.time.delay(500)
-        playsound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-    return inc  #how many rows we ended up clearing
+    return inc
+
 
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont('couriernew', 30, bold = True)
