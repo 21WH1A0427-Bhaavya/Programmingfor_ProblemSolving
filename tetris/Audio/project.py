@@ -292,7 +292,7 @@ def clear_rows(grid, locked):
         score_win_button.draw(win)
         pygame.time.delay(500)
         pygame.display.update()
-        mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
+        mixer.music.load('C:/Users/vinny/Downloads/bonus_points.wav')
         mixer.music.play(loops = 1)
         pygame.time.delay(1500)
         mixer.music.stop()
@@ -466,7 +466,6 @@ def main(win):
                 mixer.music.stop()
                 main(win)
                 help()
-
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     run = False
