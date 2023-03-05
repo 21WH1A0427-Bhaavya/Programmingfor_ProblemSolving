@@ -527,6 +527,10 @@ def main(win):
             mixer.music.stop()
             main(win)   
         if exit_button.draw(win):
+            mixer.music.load('C:/Users/vinny/Downloads/click_sound.mp3')
+            mixer.music.play(loops = 1)
+            pygame.time.delay(1000)
+            mixer.music.stop()
             main_menu(win)
         pygame.display.update()
 
