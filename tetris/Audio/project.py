@@ -460,11 +460,7 @@ def main(win):
                 main_menu(win)
             
             if help_button.draw(win):
-                mixer.music.load('C:/Users/vinny/Downloads/click_sound.mp3')
-                mixer.music.play(loops = 1)
-                pygame.time.delay(1000)
-                mixer.music.stop()
-                main(win)
+               help()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     run = False
@@ -555,6 +551,11 @@ def main_menu(win):
         #pygame.draw.rect(win, (0,0,0), (top_left_x-250 ,top_left_y+500, s_width , s_height/4), 0)
         #win.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 250))
         if help_button.draw(win):
+            mixer.music.load('C:/Users/vinny/Downloads/click_sound.mp3')
+            mixer.music.play(loops = 1)
+            pygame.time.delay(1000)
+            mixer.music.stop()
+            main(win)
             help(win)
 
         font = pygame.font.SysFont('couriernew', 40, bold = True)
