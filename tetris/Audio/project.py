@@ -555,7 +555,6 @@ def main_menu(win):
             mixer.music.play(loops = 1)
             pygame.time.delay(1000)
             mixer.music.stop()
-            main(win)
             help(win)
 
         font = pygame.font.SysFont('couriernew', 40, bold = True)
