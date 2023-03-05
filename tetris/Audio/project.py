@@ -285,12 +285,12 @@ def clear_rows(grid, locked):
                 newKey = (x, y + inc) #add y value to shift it down
                 locked[newKey] = locked.pop(key) #the last color value will be equal to the new position
     row_no = inc
-    #pygame.mixer.Sound('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
-    #pygame.mixer.music.play(loops=1)
-
-    if row_no == 1:
+    
+    
+    if row_no == 2:
         draw_text_middle(win ,'DOUBLE!', 80, (255,255,100))
         score_win_button.draw(win)
+        pygame.time.delay(500)
         pygame.display.update()
         mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
         mixer.music.play(loops = 1)
@@ -299,7 +299,7 @@ def clear_rows(grid, locked):
     elif row_no == 3:
         draw_text_middle(win,'TRIPLE!', 80, (255,255,100))
         score_win_button.draw(win)
-        pygame.time.delay(1500)
+        pygame.time.delay(500)
         pygame.display.update()
         mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
         mixer.music.play(loops = 1)
@@ -308,7 +308,7 @@ def clear_rows(grid, locked):
     elif row_no == 4:
         draw_text_middle(win, 'TETRIS!', 80, (255,255,100))
         star_button.draw(win)
-        pygame.time.delay(1500)
+        pygame.time.delay(500)
         pygame.display.update()
         mixer.music.load('C:/Users/vinny/Downloads/eliminate_lines.mp3.mp3')
         mixer.music.play(loops = 1)
@@ -400,14 +400,27 @@ def help(win):
         win.blit(inst2, (top_left_x - 220, 510))
         
         if start_button.draw(win):
+            mixer.music.load('C:/Users/vinny/Downloads/click_sound.mp3')
+            mixer.music.play(loops = 1)
+            pygame.time.delay(1000)
+            mixer.music.stop()
             main(win)
-        pygame.display.update()
         if back_Button.draw(win):
+            #Menu-Selection-Change-I-www.fesliyanstudios.com.mp3
+            mixer.music.load('C:/Users/vinny/Downloads/click_sound.mp3')
+            mixer.music.play(loops = 1)
+            pygame.time.delay(500)
+            mixer.music.stop()
             main_menu(win)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
+                mixer.music.load('C:/Users/vinny/Downloads/click_sound.mp3')
+                mixer.music.play(loops = 1)
+                pygame.time.delay(500)
+                mixer.music.stop()
+                main_menu(win)
+
 
 def main(win): 
     #last_score = max_score()
@@ -447,6 +460,11 @@ def main(win):
                 main_menu(win)
             
             if help_button.draw(win):
+                mixer.music.load('C:/Users/vinny/Downloads/click_sound.mp3')
+                mixer.music.play(loops = 1)
+                pygame.time.delay(1000)
+                mixer.music.stop()
+                main(win)
                 help()
 
             if event.type == pygame.KEYDOWN:
