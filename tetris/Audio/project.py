@@ -521,12 +521,15 @@ def main(win):
         draw_next_shape(next_piece, win)
         
         if restart_button.draw(win):
-            main(win)
+            mixer.music.load('C:/Users/vinny/Downloads/click_sound.mp3')
+            mixer.music.play(loops = 1)
+            pygame.time.delay(1000)
+            mixer.music.stop()
+            main(win)   
         if exit_button.draw(win):
             main_menu(win)
         pygame.display.update()
 
-        #Checks if user lost
         if check_lost(locked_positions):
             game_over_button.draw(win)
             pygame.display.update()
