@@ -1,6 +1,6 @@
-We learned about,draw window then created a window as main_menu and looked into shape formats which are called as tetriminos and their rotation with rondom colors the functions we used for these are ,draw_window(),convert_shape_format(), main_menu(). 
-We created a grid using functions create_grid
-check_lost,score and pop up
+Step- 1: We learned about,draw window then created a window as main_menu and looked into shape formats which are called as tetriminos and their rotation with rondom colors the functions we used for these are ,draw_window(),convert_shape_format(), main_menu(). 
+Step-2: We created a grid using functions as create_grid(),convert_shape_format(),valid_grid(),check_lost()
+Step-3: 
 buttons, 
 Gui 
-modifird th cide music, debuged
+modifird th code music, debuged
