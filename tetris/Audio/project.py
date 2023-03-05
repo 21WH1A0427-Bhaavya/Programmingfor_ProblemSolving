@@ -465,7 +465,6 @@ def main(win):
                 pygame.time.delay(1000)
                 mixer.music.stop()
                 main(win)
-                help()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     run = False
