@@ -172,11 +172,10 @@ class Button():
         win.blit(self.image, (self.rect.x, self.rect.y))
         
         return action
-
 #logo_button = Button(40, 50, logo_img, 0.5)
-back_Button = Button(30, 625, back_img, 0.3)
+back_Button = Button(30, 525, back_img, 0.3)
 keys_button = Button(620, 280, keys_img, 0.27)
-score_button = Button(630, 380, score_img, 0.5)
+score_button = Button(630, 380, score_img, 0.3)
 score_win_button = Button(620, 540, score_img, 0.3)
 rules_button = Button(20, 90, rules_img, 1.0)
 star_button = Button(50, 150, star_img, 1.0)
@@ -230,7 +229,7 @@ def valid_space(shape, grid):
     for pos in formatted:
         if pos not in accepted_pos:
             if pos[1] > -1: 
-            #we wnat our shape to fall from the top of the screen, but we dont want the rest of the shape to appear on the top of the screen
+            #we want our shape to fall from the top of the screen, but we dont want the rest of the shape to appear on the top of the screen
                 return False
     return True
 #When we are moving and rotating our shape we need to make sure that it is moving into a valid space. 
@@ -286,6 +285,9 @@ def clear_rows(grid, locked):
                 locked[newKey] = locked.pop(key) #the last color value will be equal to the new position
     row_no = inc
     
+    mixer.music.load('C:/Users/vinny/Downloads/Another_click_sound.wav')
+    mixer.music.play(loops= 0)
+
     
     if row_no == 2:
         draw_text_middle(win ,'DOUBLE!', 80, (255,255,100))
@@ -484,7 +486,12 @@ def main(win):
                     current_piece.rotation += 1
                     if not(valid_space(current_piece, grid)):
                         current_piece.rotation -= 1
-
+                        
+                if event.key == pygame.K_SPACE:
+                # move piece down until it collides with something
+                    while valid_space(current_piece, grid):
+                        current_piece.y += 1
+                    current_piece.y -= 1 # move back up one step
         shape_pos = convert_shape_format(current_piece)
         #check all positions of the piece if we have to hit the ground or lock it
 
