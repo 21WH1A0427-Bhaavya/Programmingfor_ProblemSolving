@@ -1,5 +1,0 @@
-Step-1: We learned about,draw window then created a window as main_menu and looked into shape formats which are called as tetriminos and their rotation with rondom colors the functions we used for these are ,draw_window(),convert_shape_format(), main_menu(). 
-Step-2: We created a grid as create_grid(),convert_shape_format(),valid_grid(),check_lost().
-Step-3: Next is to check if the grid is black or not if not then row gets eliminated funs clear_row(),then pop-up of bonus as draw_text_middile().
-Step-4: Then created another window as main(), to explain the games rules.
-Step-5: Created buttons and icons help().
